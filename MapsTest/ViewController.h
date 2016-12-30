@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MKMapView;
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet MKMapView *tmpView;
 
 @end
 
