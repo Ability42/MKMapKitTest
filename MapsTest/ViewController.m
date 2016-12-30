@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
-#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController ()
+@interface ViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
 
 @end
 
@@ -19,18 +21,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-/*
-    CGRect rect = CGRectMake(100, 100, 100, 100);
-    UIView *testView = [[UIView alloc] initWithFrame:rect];
-    [testView setBackgroundColor:[UIColor redColor]];
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
     
-    self.tmpView = testView;
-    [self.view addSubview:self.tmpView];
-*/
-    
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
+
+    _mapView.showsUserLocation = YES;
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    self.location = locations.lastObject;
+}
+
+#pragma mark - MKMapKitDelegate
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    NSLog(@"regionWillChangeAnimated");
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    NSLog(@"regionDidChangeAnimated");
+}
+
+- (void)mapViewWillStartLoadingMap:(MKMapView *)mapView {
+    NSLog(@"mapViewWillStartLoadingMap");
+}
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    NSLog(@"mapViewDidFinishLoadingMap");
+}
+
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
+    NSLog(@"mapViewDidFailLoadingMap");
+}
+
+- (void)mapViewWillStartRenderingMap:(MKMapView *)mapView {
+    NSLog(@"mapViewWillStartRenderingMap");
+}
+
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
+    NSLog(@"mapViewDidFinishRenderingMap");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
