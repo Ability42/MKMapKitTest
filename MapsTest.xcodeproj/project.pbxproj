@@ -16,6 +16,7 @@
 		78E2E0B81E16E7C100EB3CB3 /* MapsTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E0B71E16E7C100EB3CB3 /* MapsTestTests.m */; };
 		78E2E0C31E16E7C100EB3CB3 /* MapsTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E0C21E16E7C100EB3CB3 /* MapsTestUITests.m */; };
 		78E2E0D21E16E84A00EB3CB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E2E0D11E16E84A00EB3CB3 /* MapKit.framework */; };
+		78E2E0D51E17243700EB3CB3 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E0D41E17243700EB3CB3 /* MapAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		78E2E0C21E16E7C100EB3CB3 /* MapsTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapsTestUITests.m; sourceTree = "<group>"; };
 		78E2E0C41E16E7C100EB3CB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E2E0D11E16E84A00EB3CB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		78E2E0D31E17243700EB3CB3 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAnnotation.h; path = ../MapAnnotation.h; sourceTree = "<group>"; };
+		78E2E0D41E17243700EB3CB3 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAnnotation.m; path = ../MapAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				78E2E0A11E16E7C000EB3CB3 /* AppDelegate.m */,
 				78E2E0A31E16E7C000EB3CB3 /* ViewController.h */,
 				78E2E0A41E16E7C000EB3CB3 /* ViewController.m */,
+				78E2E0D31E17243700EB3CB3 /* MapAnnotation.h */,
+				78E2E0D41E17243700EB3CB3 /* MapAnnotation.m */,
 				78E2E0A61E16E7C000EB3CB3 /* Main.storyboard */,
 				78E2E0A91E16E7C000EB3CB3 /* Assets.xcassets */,
 				78E2E0AB1E16E7C000EB3CB3 /* LaunchScreen.storyboard */,
@@ -296,6 +301,7 @@
 				78E2E0A51E16E7C000EB3CB3 /* ViewController.m in Sources */,
 				78E2E0A21E16E7C000EB3CB3 /* AppDelegate.m in Sources */,
 				78E2E09F1E16E7C000EB3CB3 /* main.m in Sources */,
+				78E2E0D51E17243700EB3CB3 /* MapAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +537,7 @@
 				78E2E0C91E16E7C100EB3CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78E2E0CA1E16E7C100EB3CB3 /* Build configuration list for PBXNativeTarget "MapsTestTests" */ = {
 			isa = XCConfigurationList;
@@ -539,6 +546,7 @@
 				78E2E0CC1E16E7C100EB3CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78E2E0CD1E16E7C100EB3CB3 /* Build configuration list for PBXNativeTarget "MapsTestUITests" */ = {
 			isa = XCConfigurationList;
@@ -547,6 +555,7 @@
 				78E2E0CF1E16E7C100EB3CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
