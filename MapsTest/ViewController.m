@@ -15,6 +15,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @property (strong ,nonatomic) CLGeocoder *gc;
+@property (strong, nonatomic) MKDirections *directions;
 
 @end
 
@@ -142,6 +143,11 @@
         return;
     }
     
+    if ([self.directions isCalculating]) {
+        [self.directions cancel];
+    }
+    
+    
     CLLocationCoordinate2D coordinate2d = annotationView.annotation.coordinate;
     
     
@@ -154,7 +160,7 @@
     
     dirRequest.transportType = MKDirectionsTransportTypeAutomobile;
     
-    MKDirections *directions = [[MKDirections alloc] initWithRequest:dirRequest];
+    self.directions = [[MKDirections alloc] initWithRequest:dirRequest];
     
     // TODO : calculateDirectionsWithCompletionHandler
 }
@@ -210,6 +216,10 @@
 - (void) dealloc {
     if ([self.gc isGeocoding]) {
         [self.gc cancelGeocode];
+    }
+    
+    if ([self.directions isCalculating]) {
+        [self.directions cancel];
     }
 }
 
