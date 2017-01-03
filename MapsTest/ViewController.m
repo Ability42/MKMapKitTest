@@ -150,8 +150,9 @@
     
     CLLocationCoordinate2D coordinate2d = annotationView.annotation.coordinate;
     
-    
     MKDirectionsRequest *dirRequest = [[MKDirectionsRequest alloc] init];
+    
+    // Source
     dirRequest.source = [MKMapItem mapItemForCurrentLocation];
     
     // Destination
@@ -161,8 +162,23 @@
     dirRequest.transportType = MKDirectionsTransportTypeAutomobile;
     
     self.directions = [[MKDirections alloc] initWithRequest:dirRequest];
-    
-    // TODO : calculateDirectionsWithCompletionHandler
+        
+    [self.directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"%@",error.localizedDescription);
+        } else if ([response.routes count] == 0) {
+            NSLog(@"Error: No routes found");
+        } else {
+            [self.mapView removeOverlays:self.mapView.overlays];
+            NSMutableArray *polylines = [NSMutableArray array];
+            for (MKRoute *route in response.routes) {
+                [polylines addObject:route];
+            }
+            [self.mapView addOverlays:polylines level:MKOverlayLevelAboveRoads];
+        }
+        
+    }];
 }
 
 #pragma mark - MKMapViewDelegate
