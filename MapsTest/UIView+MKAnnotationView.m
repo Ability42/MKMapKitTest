@@ -12,7 +12,7 @@
 
 - (MKAnnotationView *) superAnnotationView {
     
-    if ([self.superview isKindOfClass:[MKAnnotationView class]]) {
+    if ([self isKindOfClass:[MKAnnotationView class]]) {
         return (MKAnnotationView*)self;
     }
     if (!self.superview) {

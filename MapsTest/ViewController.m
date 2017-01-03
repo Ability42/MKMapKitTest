@@ -108,8 +108,9 @@
         CLLocationCoordinate2D coordinate2d = annotationView.annotation.coordinate;
         CLLocation *location = [[CLLocation alloc] initWithLatitude:coordinate2d.latitude
                                                           longitude:coordinate2d.longitude];
-        
-        [self.gc cancelGeocode];
+        if ([self.gc isGeocoding]) {
+            [self.gc cancelGeocode];
+        }
         
         [self.gc reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             
@@ -119,9 +120,9 @@
             } else {
                 
                 if ([placemarks count] > 0) {
-                    MKPlacemark *pm = (MKPlacemark*)[placemarks firstObject];
-                    //message = [pm.addressDictionary description];
-                    message = pm.country;
+                    MKPlacemark *pm = [placemarks firstObject];
+                    message = [pm.addressDictionary description];
+                    //message = pm.country;
                 } else {
                     message = @"No placemarks found";
                 }
@@ -172,6 +173,14 @@
         CLLocationCoordinate2D location = view.annotation.coordinate;
         MKMapPoint point = MKMapPointForCoordinate(location);
         NSLog(@"Location: (%f. %f)\nPoint: (%@)", location.latitude, location.longitude, MKStringFromMapPoint(point));
+    }
+}
+
+#pragma mark - Dealloc
+
+- (void) dealloc {
+    if ([self.gc isGeocoding]) {
+        [self.gc cancelGeocode];
     }
 }
 
