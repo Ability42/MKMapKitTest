@@ -120,7 +120,7 @@
             } else {
                 
                 if ([placemarks count] > 0) {
-                    MKPlacemark *pm = [placemarks firstObject];
+                    MKPlacemark *pm = (MKPlacemark*)[placemarks firstObject];
                     message = [pm.addressDictionary description];
                     //message = pm.country;
                 } else {
@@ -131,7 +131,32 @@
         }];
         
     }
+
+}
+
+- (void) directionAction:(UIButton*)sender {
     
+    MKAnnotationView *annotationView = [sender superAnnotationView];
+    
+    if (!annotationView) {
+        return;
+    }
+    
+    CLLocationCoordinate2D coordinate2d = annotationView.annotation.coordinate;
+    
+    
+    MKDirectionsRequest *dirRequest = [[MKDirectionsRequest alloc] init];
+    dirRequest.source = [MKMapItem mapItemForCurrentLocation];
+    
+    // Destination
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate2d];
+    dirRequest.destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+    
+    dirRequest.transportType = MKDirectionsTransportTypeAutomobile;
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:dirRequest];
+    
+    // TODO : calculateDirectionsWithCompletionHandler
 }
 
 #pragma mark - MKMapViewDelegate
@@ -157,6 +182,10 @@
         UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
         pin.rightCalloutAccessoryView = infoButton;
+        
+        UIButton *directionButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        [infoButton addTarget:self action:@selector(directionAction:) forControlEvents:UIControlEventTouchUpInside];
+        pin.leftCalloutAccessoryView = directionButton;
         
     } else {
         pin.annotation = annotation;
