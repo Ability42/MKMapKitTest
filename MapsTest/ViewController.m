@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "UIView+MKAnnotationView.h"
 
 @interface ViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
@@ -83,7 +84,7 @@
         
         CLLocationCoordinate2D location = annotation.coordinate;
         MKMapPoint center = MKMapPointForCoordinate(location);
-        static double delta = 20000;
+        static double delta = 200;
         
         MKMapRect rect = MKMapRectMake(center.x - delta, center.y - delta, delta*2, delta*2);
         zoomRect = MKMapRectUnion(zoomRect, rect);
@@ -93,10 +94,6 @@
     [_mapView setVisibleMapRect:zoomRect
                     edgePadding:UIEdgeInsetsMake(100, 100, 100, 100)
                        animated:YES];
-}
-
-- (void) infoAction:(UIButton*)sender {
-    NSLog(@"infoAction");
 }
 
 #pragma mark - MKMapViewDelegate

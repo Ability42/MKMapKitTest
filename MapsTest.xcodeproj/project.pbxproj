@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78A09FBD1E1A912900ED20DD /* UIView+MKAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A09FBC1E1A912900ED20DD /* UIView+MKAnnotationView.m */; };
 		78E2E09F1E16E7C000EB3CB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E09E1E16E7C000EB3CB3 /* main.m */; };
 		78E2E0A21E16E7C000EB3CB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E0A11E16E7C000EB3CB3 /* AppDelegate.m */; };
 		78E2E0A51E16E7C000EB3CB3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E0A41E16E7C000EB3CB3 /* ViewController.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78A09FBB1E1A912900ED20DD /* UIView+MKAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MKAnnotationView.h"; sourceTree = "<group>"; };
+		78A09FBC1E1A912900ED20DD /* UIView+MKAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MKAnnotationView.m"; sourceTree = "<group>"; };
 		78E2E09A1E16E7C000EB3CB3 /* MapsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E2E09E1E16E7C000EB3CB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78E2E0A01E16E7C000EB3CB3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				78E2E0D31E17243700EB3CB3 /* MapAnnotation.h */,
 				78E2E0D41E17243700EB3CB3 /* MapAnnotation.m */,
 				78E2E0A61E16E7C000EB3CB3 /* Main.storyboard */,
+				78A09FBB1E1A912900ED20DD /* UIView+MKAnnotationView.h */,
+				78A09FBC1E1A912900ED20DD /* UIView+MKAnnotationView.m */,
 				78E2E0A91E16E7C000EB3CB3 /* Assets.xcassets */,
 				78E2E0AB1E16E7C000EB3CB3 /* LaunchScreen.storyboard */,
 				78E2E0AE1E16E7C000EB3CB3 /* Info.plist */,
@@ -300,6 +305,7 @@
 			files = (
 				78E2E0A51E16E7C000EB3CB3 /* ViewController.m in Sources */,
 				78E2E0A21E16E7C000EB3CB3 /* AppDelegate.m in Sources */,
+				78A09FBD1E1A912900ED20DD /* UIView+MKAnnotationView.m in Sources */,
 				78E2E09F1E16E7C000EB3CB3 /* main.m in Sources */,
 				78E2E0D51E17243700EB3CB3 /* MapAnnotation.m in Sources */,
 			);
