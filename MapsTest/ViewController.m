@@ -170,8 +170,9 @@
         } else if ([response.routes count] == 0) {
             NSLog(@"Error: No routes found");
         } else {
-            [self.mapView removeOverlays:self.mapView.overlays];
+            [self.mapView removeOverlays:[self.mapView overlays]];
             NSMutableArray *polylines = [NSMutableArray array];
+            
             for (MKRoute *route in response.routes) {
                 [polylines addObject:route];
             }
@@ -214,6 +215,16 @@
     }
     
     return pin;
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
+    if ([overlay isKindOfClass:[MKPolyline class]]) {
+        MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+        renderer.lineWidth = 2.f;
+        renderer.fillColor = [UIColor orangeColor];
+        return renderer;
+    }
+    return nil;
 }
 
 #pragma mark - MKMapView
