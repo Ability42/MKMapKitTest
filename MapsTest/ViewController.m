@@ -156,13 +156,17 @@
     dirRequest.source = [MKMapItem mapItemForCurrentLocation];
     
     // Destination
-    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate2d];
-    dirRequest.destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate2d addressDictionary:nil];
+    MKMapItem* destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+    
+    dirRequest.destination = destination;
     
     dirRequest.transportType = MKDirectionsTransportTypeAutomobile;
-    
+    dirRequest.requestsAlternateRoutes = YES;
+
     self.directions = [[MKDirections alloc] initWithRequest:dirRequest];
-        
+
+    
     [self.directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
         
         if (error) {
@@ -174,7 +178,7 @@
             NSMutableArray *polylines = [NSMutableArray array];
             
             for (MKRoute *route in response.routes) {
-                [polylines addObject:route];
+                [polylines addObject:route.polyline];
             }
             [self.mapView addOverlays:polylines level:MKOverlayLevelAboveRoads];
         }
@@ -219,9 +223,10 @@
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
     if ([overlay isKindOfClass:[MKPolyline class]]) {
-        MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+        
+        MKPolylineRenderer* renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
         renderer.lineWidth = 2.f;
-        renderer.fillColor = [UIColor orangeColor];
+        renderer.strokeColor = [UIColor colorWithRed:0.f green:0.5f blue:1.f alpha:0.9f];
         return renderer;
     }
     return nil;
@@ -239,7 +244,7 @@
 }
 
 #pragma mark - Dealloc
-
+/*
 - (void) dealloc {
     if ([self.gc isGeocoding]) {
         [self.gc cancelGeocode];
@@ -249,7 +254,7 @@
         [self.directions cancel];
     }
 }
-
+*/
 /*
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
     NSLog(@"regionWillChangeAnimated");
